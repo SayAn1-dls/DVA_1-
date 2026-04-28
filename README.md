@@ -2,6 +2,190 @@
 
 <div align="center">
 
+![Header](https://capsule-render.vercel.app/api?type=waving&height=180&color=0:0ea5e9,100:6366f1&text=E-commerce%20Logistics%20Analytics&fontColor=ffffff&fontSize=36&animation=fadeIn&fontAlignY=35)
+
+![Typing SVG](https://readme-typing-svg.demolab.com?font=Inter&weight=600&size=18&duration=2600&pause=900&color=0EA5E9&center=true&vCenter=true&width=900&lines=Raw+Data+%E2%86%92+Cleaned+Data+%E2%86%92+Business+Insight;8%2C577+rows+profiled+%7C+8%2C449+rows+analyzed;Speed%2C+Reliability%2C+Customer+Experience)
+
+![Google Sheets](https://img.shields.io/badge/Google_Sheets-34A853?style=for-the-badge&logo=googlesheets&logoColor=white)
+![Data Analytics](https://img.shields.io/badge/Data_Analytics-0A66C2?style=for-the-badge&logo=databricks&logoColor=white)
+![Dashboard](https://img.shields.io/badge/Dashboard-FF6F00?style=for-the-badge&logo=googleanalytics&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
+
+</div>
+
+---
+
+## Project Focus
+
+This capstone evaluates e-commerce delivery performance across Indonesia using courier, geography, and delivery-type dimensions.
+
+Primary question:
+**Which operational levers improve delivery speed while maintaining customer satisfaction?**
+
+---
+
+## Exact Dataset Snapshot
+
+Numbers below are computed directly from files in this repository (`Rawdataset` + `Cleaned`):
+
+- Raw records: **8,577**
+- Cleaned records: **8,449**
+- Rows removed/resolved during cleaning: **128**
+- Courier partners: **5**
+- Cities: **20**
+- Districts: **329**
+- Average estimated delivery time: **2.814 days**
+- Average product rating: **2.996 / 5**
+- Date range in cleaned file: **11/06/2022 to 11/06/2023**
+
+---
+
+## Data-to-Insight Pipeline
+
+```mermaid
+flowchart LR
+    A[Raw CSV<br/>8,577 rows] --> B[Cleaning & Standardization]
+    B --> C[Cleaned Dataset<br/>8,449 rows]
+    C --> D[Pivot Calculations]
+    D --> E[Dashboard Assets]
+    E --> F[Operational Insights]
+```
+
+---
+
+## Courier Performance (Exact)
+
+```mermaid
+xychart-beta
+    title "Average Estimated Delivery Time by Courier (days)"
+    x-axis ["Ninja Xpress","Jne","Sicepat","J&T Express","Pos Indonesia"]
+    y-axis "Days" 2.65 --> 2.9
+    bar [2.729,2.803,2.826,2.843,2.869]
+```
+
+```mermaid
+pie showData
+    title Courier Order Mix (8,449 orders)
+    "Sicepat (1,745)" : 1745
+    "Pos Indonesia (1,715)" : 1715
+    "Jne (1,671)" : 1671
+    "Ninja Xpress (1,665)" : 1665
+    "J&T Express (1,653)" : 1653
+```
+
+Courier summary table:
+
+| Courier | Orders | Avg Delivery Days | Avg Rating |
+|---|---:|---:|---:|
+| Ninja Xpress | 1,665 | 2.729 | 2.968 |
+| Jne | 1,671 | 2.803 | 2.981 |
+| Sicepat | 1,745 | 2.826 | 3.006 |
+| J&T Express | 1,653 | 2.843 | 2.995 |
+| Pos Indonesia | 1,715 | 2.869 | 3.026 |
+
+---
+
+## Delivery-Type Analysis (Exact)
+
+```mermaid
+xychart-beta
+    title "Average Estimated Delivery Time by Delivery Type (days)"
+    x-axis ["Express","Next Day","Reguler","Same Day"]
+    y-axis "Days" 2.7 --> 2.9
+    bar [2.742,2.814,2.843,2.859]
+```
+
+| Delivery Type | Orders | Avg Delivery Days |
+|---|---:|---:|
+| Express | 2,145 | 2.742 |
+| Next Day | 2,031 | 2.814 |
+| Reguler | 2,125 | 2.843 |
+| Same Day | 2,148 | 2.859 |
+
+---
+
+## Geography Contrast (Cities with 150+ Orders)
+
+Fastest:
+- Malang (**2.611**, 435 orders)
+- Surakarta (**2.657**, 411 orders)
+- Makassar (**2.686**, 440 orders)
+- Tangerang (**2.702**, 440 orders)
+- Yogyakarta (**2.705**, 431 orders)
+
+Slowest:
+- Semarang (**2.971**, 409 orders)
+- Depok (**2.953**, 443 orders)
+- Bandung (**2.931**, 423 orders)
+- Bogor (**2.927**, 410 orders)
+- Surabaya (**2.916**, 430 orders)
+
+---
+
+## Key Business Insights
+
+- Delivery-time differences across couriers are measurable but narrow.
+- `Ninja Xpress` leads on speed; `Pos Indonesia` leads slightly on average rating.
+- Service labels do not perfectly map to speed expectations (`Same Day` appears slowest in this dataset).
+- City-level operations likely explain a meaningful share of variability.
+
+---
+
+## Repository Structure
+
+```text
+DVA-Capstone/
+├── Rawdataset/
+│   └── Dataset_ecommerce - Raw_Data.csv
+├── Cleaned/
+│   └── Dataset_ecommerce - cleaned.csv
+├── Calculations_Pivots/
+│   └── Dataset_ecommerce - cleaned - Pivot Table.csv
+├── dashboard/
+│   ├── Dataset_ecommerce - cleaned - Dashboard.csv
+│   ├── Dataset_ecommerce - cleaned - Dashboard.pdf
+│   └── dashboard.png
+├── Documentation/
+│   ├── Delivery_Performance_Analysis.pdf
+│   └── Report.pdf
+└── README.md
+```
+
+---
+
+## Data Dictionary
+
+| Field | Description |
+|---|---|
+| `product_id` | Product/order identifier |
+| `order_date` | Order placement date (`DD/MM/YY`) |
+| `courier_delivery` | Courier partner name |
+| `city` | Delivery city |
+| `district` | Delivery district |
+| `type_of_delivery` | Service tier (`Express`, `Next Day`, `Reguler`, `Same Day`) |
+| `estimated_delivery_time_days` | Estimated shipment duration in days |
+| `product_rating` | Customer product rating from 1 to 5 |
+
+---
+
+## Dashboard Components
+
+- KPI cards (total orders, avg delivery time, avg rating)
+- Courier speed comparison
+- Delivery type vs speed view
+- Courier share distribution
+- City performance ranking
+- Interactive slicer-based filtering
+
+---
+
+## Team
+
+**Group 4 | Section A**
+# Delivery Performance Intelligence
+
+<div align="center">
+
 ### E-commerce Logistics Analytics Capstone
 
 From raw shipment data to a recruiter-ready operations intelligence story.
